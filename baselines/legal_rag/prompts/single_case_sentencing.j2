@@ -1,0 +1,31 @@
+You are analyzing a federal sentencing case against the U.S. Sentencing Guidelines and Title 18 materials.
+
+Task:
+- Read the case summary.
+- Use the retrieved legal context as supporting material.
+- Predict the most defensible total offense level.
+- If the retrieved context clearly supports it, also predict the criminal history category and guideline range.
+- Be conservative. Do not guess values that are not supported.
+- Return only valid JSON matching the schema exactly.
+
+Rules:
+- Use only information present in the case summary and the retrieved legal context.
+- Prefer omission over speculation.
+- If you cannot support a field, return null for that field.
+
+Output schema:
+{
+  "predicted_offense_level_total": "string or null",
+  "predicted_criminal_history_category": "string or null",
+  "predicted_guidelines_low_months": "string or null",
+  "predicted_guidelines_high_months": "string or null",
+  "confidence": 0.0,
+  "rationale": "short explanation",
+  "supporting_evidence": ["short evidence item 1", "short evidence item 2"]
+}
+
+Case summary:
+{{ case_summary }}
+
+Retrieved legal context (top {{ top_k }} chunks):
+{{ retrieved_context }}

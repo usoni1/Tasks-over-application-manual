@@ -1,0 +1,1 @@
+"""Local baseline packages vendored into this repository."""
